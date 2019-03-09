@@ -1,0 +1,18 @@
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -c
+LXXFLAGS = -std=c++17
+OBJECTS = hw2_2.o libArr.o libVec.o
+TARGET = hw2_2
+
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(LXXFLAGS) $(OBJECTS) -o $(TARGET)
+hw2_1.o: hw2_2.cpp
+	$(CXX) $(CXXFLAGS) hw2_2.cpp
+libArr.o: libArr.cpp libArr.h
+	$(CXX) $(CXXFLAGS) libArr.cpp
+libVec.o: libVec.cpp libVec.h
+	$(CXX) $(CXXFLAGS) libVec.cpp
+
+clean:
+	rm -f $(TARGET) $(OBJECTS)

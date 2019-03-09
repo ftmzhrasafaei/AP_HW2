@@ -1,0 +1,14 @@
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -c
+LXXFLAGS = -std=c++17
+OBJECTS = hw2_3.o 
+TARGET = hw2_3
+
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(LXXFLAGS) $(OBJECTS) -o $(TARGET)
+hw2_1.o: hw2_3.cpp
+	$(CXX) $(CXXFLAGS) hw2_3.cpp
+
+clean:
+	rm -f $(TARGET) $(OBJECTS)

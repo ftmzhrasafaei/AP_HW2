@@ -1,0 +1,277 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+
+
+int main(){
+  char c{} ;
+  std::string line{};
+  int count{};
+  std:: ifstream in;
+  in.open("db.txt");
+  while(getline(in,line))
+	count++;
+  
+  char arr[count][22]{};
+  in.close();
+   std::ifstream inn;
+   inn.open("db.txt");
+
+  for(int i{}; i<count;i++){
+    for(int j{};j<22;j++){
+      inn>>c;
+      if(c != ']'&& c!='[') 
+      arr[i][j]=c;
+      else
+	j--;
+    }
+  }
+  
+  inn.close();
+  /*
+  for(int i{};i<count;i++){
+    for(int j{};j<22;j++){
+         std::cout<<arr[i][j];
+    }
+     std::cout<<std::endl;
+     }*/
+  
+  char days[count][11]{};
+  char times[count][6]{};
+  char products[count][4]{};
+  char customers[count][5]{};
+  
+       for(int i{};i<count;i++){
+	 for(int j{};j<10;j++){
+	   days[i][j]=arr[i][j];
+	   //   std::cout<< days[i][j];
+	 }//days[i][11]='\n';
+	 //  std::cout<<std::endl;
+	 days[i][10]='\n';
+       }/*
+       for(int i{};i<count;i++){
+	 daysss[i]=arr[i];
+	 std::cout<<daysss[i]<<std::endl;
+       }*/
+      for(int i{};i<count;i++){
+    for(int j{};j<5;j++){
+      times[i][j]=arr[i][j+10];
+      //  std::cout<< times[i][j];
+    }// std::cout<<std::endl;
+    
+      }
+    
+      for(int i{};i<count;i++){
+    for(int j{};j<3;j++){
+      products[i][j]=arr[i][j+15];
+      //  std::cout<<products[i][j];
+    }// std::cout<<std::endl;
+    products[i][3]='\n';
+      }
+    
+      for(int i{};i<count;i++){
+    for(int j{};j<4;j++){
+      customers[i][j]=arr[i][j+18];
+      //  std::cout<<customers[i][j];
+    }// std::cout<<std::endl;
+    customers[i][4]='\n';
+  }
+      int customer_c [count]{};
+      int product_c [count]{};
+      std::string day[count]{};
+      std::string dayss[count]{};
+     
+
+      std::string customer[count]{};
+      std::string product[count]{};
+      std::stringstream ssin(days[0]);
+      for(int i{}; ssin.good()&&i<count;i++){
+	ssin>>day[i];
+	 }
+      std::stringstream ssin1(customers[0]);
+      std::stringstream ssin2(products[0]);
+            for(int i{}; ssin1.good()&&i<count;i++){
+	ssin1>>customer[i];
+	 }
+            for(int i{}; ssin2.good()&&i<count;i++){
+	ssin2>>product[i];
+	 }	    
+	    
+	       for(int j{};j<count;j++){
+	       std::cout<<day[j]<<" : "<<customer[j]<<" : "<<product[j];
+	       
+	          std::cout<<std::endl;
+	       }
+	       /*
+		      for(int j{};j<count;j++)
+			 std::cout<<customer[j]<<" ";
+		      
+		      	          std::cout<<std::endl;
+
+		        for(int j{} ; j<count ; j++)
+			    std::cout<<product[j]<<" ";
+			
+			 std::cout<<std::endl;
+	    */
+ 	
+	
+
+
+
+	       int c1{1} ,p{1} ,j{}, u{};
+	       //	       ,K2{},K3{};
+	         int customercounter[count]{};
+		  int productcounter[count]{};
+		  for(int i{};i<count;i++){
+		    customercounter[i]=1;
+		    productcounter[i]=1;}
+	  while(j+u+1<count){
+	    	dayss[u]=day[u];
+		if(day[u]==day[u+j+1]){
+		  //  customercounter[u]++;
+		  //  productcounter[u]++;
+
+	      dayss[u+j+1]='\n';
+	      if(customer[u]==customer[u+j+1]){
+		customer_c[u]=++c1;
+		
+		//	K2=1;
+		//	customercounter[u]+=c1;
+		
+		customercounter[u+j+1]=0;
+	      }
+	      else{
+		customer_c[u]=c1;
+		customer_c[u+j+1]=c1;
+
+		customercounter[u]++;
+		customercounter[u+j+1]=0;
+	      }
+	      
+	      // if(c1>1)
+	      //		 	customercounter[u]+=K2;
+	      
+	      if(product[u]==product[u+j+1]){
+		//	std::cout<<u<<std::endl;
+		product_c[u]=++p;
+		//	productcounter[u]+=p;
+			productcounter[u+j+1]=0;
+
+	      }
+	      else{
+		product_c[u]=p;
+		product_c[u+j+1]=p;
+			productcounter[u]++;
+			productcounter[u+j+1]=0;
+
+	      }
+	      // if(p>1)
+	      //			 	productcounter[u]+=K3;
+	      j++;
+	      //   customercounter[u]+=;
+	      // productcounter[u]
+	    }
+	    
+	      else{
+		dayss[u+j+1]=day[u+j+1];
+		u=u+j+1;
+		c1=1;
+		//	K2=0;
+		//		K3=0;
+		p=1;
+		j=0;
+	      }
+	       
+	  }
+	       
+		  
+	  std::cout<<std::endl;	  
+
+	  int daycounter{};
+         for(int i{};i<count;i++){
+	    if(dayss[i]!="\n"){
+	      std::cout<<day[i]<<" : "<<dayss[i]<<std::endl;
+	      daycounter++;
+	        }
+	 }
+	 //	 std::cout<<daycounter<<std::endl;
+	  
+	 std::string lastdays[daycounter];
+	 //	 int customer
+	 	
+	  for(int i{};i<daycounter;i++){
+	    if(dayss[i]!="\n"){
+	      lastdays[i]=dayss[i];
+	        }
+	 }
+	  
+	  // int customercounter[daycounter]{};
+	    //    int productcounter[daycounter]{};
+	  /*
+      for(int i{};i<count;i++){
+	if(product_c[i]!=0){
+	std::cout<<product[i]<<" : "<<product_c[i]<<std::endl;}
+      	}
+
+
+      
+      //      std::cout<<daycounter<<std::endl;
+    
+      for(int i{};i<count;i++){
+	 if(customer_c[i]!=0){
+	std::cout<<customer[i]<<" : "<<customer_c[i]<<std::endl;}
+      } std::cout<<std::endl;
+	  */
+	  /*
+    int y{};
+      for(int i{};i<daycounter;i++){
+	while(y<count){
+	  if(lastdays[i]==dayss[y]){
+	  	if(product_c[y]>=1)
+		  	productcounter[i]++;
+		if(customer_c[y]>=1)
+		  	customercounter[i]++;
+		else
+		  break;
+	  }y++;
+   
+	  //	  std::cout<<"y:"<<y<<std::endl;
+
+	}
+	std::cout<<productcounter[i]<<","<<customercounter[i]<<std::endl;
+
+	//	y=0;
+      }
+      */
+
+
+
+	  //	  int cus[daycounter]{};
+	  //	  int pro[daycounter]{};
+	  
+      
+	  // std::cout<<"cus"<<std::endl;
+      
+	  for(auto x:customercounter)	
+	    std::cout<<x<<",";
+      std::cout<<"pro"<<std::endl;
+      for(auto x:productcounter)
+			std::cout<<x<<",";
+      std::cout<<std::endl;
+
+     
+  std::ofstream out{"dbnew.txt"};
+ int z{};
+ while(z<count){
+   if(dayss[z]!="\n"){
+     out<<"["<<dayss[z]<<"]"<<" "<<customercounter[z]<<" "<<productcounter[z]<<std::endl;}
+   z++;
+ }
+	  
+   out.close();  
+	       
+  return 0;
+}

@@ -1,0 +1,19 @@
+#ifndef MAP_H
+#define MAP_H
+class Map{
+public:
+  
+  int n;
+  std::vector<std::vector<int>>arr;
+  std::vector<std::vector<int>>arr2{};
+ 
+  
+  Map(int N);
+  int sign(int k);
+  void findRoute();
+  void showMap();
+  void showRoute();
+  ~Map();
+  
+  };
+#endif
